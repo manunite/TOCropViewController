@@ -20,11 +20,11 @@
 //  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
 //  IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TOCropToolbar.h"
+#import "TOCropBottomToolbar.h"
 
-#define TOCROPTOOLBAR_DEBUG_SHOWING_BUTTONS_CONTAINER_RECT 0   // convenience debug toggle
+#define TOCROPBOTTOMTOOLBAR_DEBUG_SHOWING_BUTTONS_CONTAINER_RECT 0   // convenience debug toggle
 
-@interface TOCropToolbar()
+@interface TOCropBottomToolbar()
 
 @property (nonatomic, strong) UIView *backgroundView;
 
@@ -43,7 +43,7 @@
 
 @end
 
-@implementation TOCropToolbar
+@implementation TOCropBottomToolbar
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -88,7 +88,7 @@
     [self addSubview:_doneTextButton];
     
     _doneIconButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [_doneIconButton setImage:[TOCropToolbar doneImage] forState:UIControlStateNormal];
+    [_doneIconButton setImage:[TOCropBottomToolbar doneImage] forState:UIControlStateNormal];
     [_doneIconButton setTintColor:[UIColor colorWithRed:1.0f green:0.8f blue:0.0f alpha:1.0f]];
     [_doneIconButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_doneIconButton];
@@ -110,7 +110,7 @@
     [self addSubview:_cancelTextButton];
     
     _cancelIconButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [_cancelIconButton setImage:[TOCropToolbar cancelImage] forState:UIControlStateNormal];
+    [_cancelIconButton setImage:[TOCropBottomToolbar cancelImage] forState:UIControlStateNormal];
     [_cancelIconButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_cancelIconButton];
     
@@ -169,7 +169,7 @@
     frame.size.height += self.backgroundViewOutsets.bottom;
     self.backgroundView.frame = frame;
     
-#if TOCROPTOOLBAR_DEBUG_SHOWING_BUTTONS_CONTAINER_RECT
+#if TOCROPBOTTOMTOOLBAR_DEBUG_SHOWING_BUTTONS_CONTAINER_RECT
     static UIView *containerView = nil;
     if (!containerView) {
         containerView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -220,7 +220,7 @@
         
         CGRect containerRect = CGRectIntegral((CGRect){x,frame.origin.y,width,44.0f});
 
-#if TOCROPTOOLBAR_DEBUG_SHOWING_BUTTONS_CONTAINER_RECT
+#if TOCROPBOTTOMTOOLBAR_DEBUG_SHOWING_BUTTONS_CONTAINER_RECT
         containerView.frame = containerRect;
 #endif
         
@@ -258,7 +258,7 @@
         
         CGRect containerRect = (CGRect){0,CGRectGetMaxY(self.doneIconButton.frame),44.0f,CGRectGetMinY(self.cancelIconButton.frame)-CGRectGetMaxY(self.doneIconButton.frame)};
         
-#if TOCROPTOOLBAR_DEBUG_SHOWING_BUTTONS_CONTAINER_RECT
+#if TOCROPBOTTOMTOOLBAR_DEBUG_SHOWING_BUTTONS_CONTAINER_RECT
         containerView.frame = containerRect;
 #endif
         
