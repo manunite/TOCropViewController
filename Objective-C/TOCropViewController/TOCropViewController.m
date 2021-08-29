@@ -321,7 +321,8 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 
         // Set Y and adjust for height
         if (self.toolbarPosition == TOCropViewControllerToolbarPositionBottom) {
-            frame.size.height -= (insets.bottom + kTOCropViewControllerToolbarHeight);
+            frame.origin.y += (insets.top + kTOCropViewControllerToolbarHeight);
+            frame.size.height -= (insets.top + insets.bottom + (2 * kTOCropViewControllerToolbarHeight));
         } else if (self.toolbarPosition == TOCropViewControllerToolbarPositionTop) {
 			frame.origin.y = kTOCropViewControllerToolbarHeight + insets.top;
             frame.size.height -= frame.origin.y;
@@ -373,7 +374,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
             self.cropView.cropRegionInsets = UIEdgeInsetsMake(0.0f, 0.0f, insets.bottom, 0.0f);
           }
           else { // Add padding to the top otherwise
-            self.cropView.cropRegionInsets = UIEdgeInsetsMake(insets.top, 0.0f, 0.0, 0.0f);
+            self.cropView.cropRegionInsets = UIEdgeInsetsMake(0.0, 0.0f, 0.0, 0.0f);
           }
         }
         else {
