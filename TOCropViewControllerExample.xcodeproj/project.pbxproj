@@ -98,6 +98,9 @@
 		F57211F926DBDB2B00149FAF /* TOCropTopToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F57211F626DBDB2B00149FAF /* TOCropTopToolbar.m */; };
 		F57211FA26DBDB2B00149FAF /* TOCropTopToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = F57211F726DBDB2B00149FAF /* TOCropTopToolbar.h */; };
 		F57211FB26DBDB2B00149FAF /* TOCropTopToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = F57211F726DBDB2B00149FAF /* TOCropTopToolbar.h */; };
+		F572120126DBE0F200149FAF /* TOCropTopToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F57211F626DBDB2B00149FAF /* TOCropTopToolbar.m */; };
+		F572120226DBE0F200149FAF /* TOCropTopToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F57211F626DBDB2B00149FAF /* TOCropTopToolbar.m */; };
+		F572120326DBE0F300149FAF /* TOCropTopToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F57211F626DBDB2B00149FAF /* TOCropTopToolbar.m */; };
 		FE3E0E3A21098448004DAE93 /* TOCropViewConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 220C8E9F21062DD300A9B25D /* TOCropViewConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -813,6 +816,7 @@
 				22DB4D9E1B234D4F008B8466 /* TOActivityCroppedImageProvider.m in Sources */,
 				22DB4D961B234D07008B8466 /* TOCropViewControllerTransitioning.m in Sources */,
 				22DB4D991B234D07008B8466 /* TOCropScrollView.m in Sources */,
+				F572120126DBE0F200149FAF /* TOCropTopToolbar.m in Sources */,
 				223DCEB61FBAA85D00F99209 /* TOCropViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -832,6 +836,7 @@
 				22B68F9D1FFB380700601B1A /* TOCropViewController.m in Sources */,
 				2238CF251FC0269C0081B957 /* ViewController.swift in Sources */,
 				2238CF231FC0269C0081B957 /* AppDelegate.swift in Sources */,
+				F572120226DBE0F200149FAF /* TOCropTopToolbar.m in Sources */,
 				2238CF361FC029880081B957 /* CropViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -860,6 +865,7 @@
 			files = (
 				2236AB4A1F595960005C5098 /* ShareViewController.m in Sources */,
 				2F5062EC1F53E31F00AA9F14 /* TOActivityCroppedImageProvider.m in Sources */,
+				F572120326DBE0F300149FAF /* TOCropTopToolbar.m in Sources */,
 				2F5062EF1F53E31F00AA9F14 /* TOCropOverlayView.m in Sources */,
 				2F5062F21F53E31F00AA9F14 /* TOCropView.m in Sources */,
 				2F5062F41F53E32800AA9F14 /* ViewController.m in Sources */,

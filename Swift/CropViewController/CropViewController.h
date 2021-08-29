@@ -24,6 +24,7 @@
 
 #import "TOCropViewController.h"
 #import "TOCropView.h"
+#import "TOCropTopToolbar.h"
 #import "TOCropBottomToolbar.h"
 #import "TOCropViewConstants.h"
 #import "UIImage+CropRotate.h"

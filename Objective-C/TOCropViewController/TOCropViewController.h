@@ -24,6 +24,7 @@
 
 #import "TOCropViewConstants.h"
 #import "TOCropView.h"
+#import "TOCropTopToolbar.h"
 #import "TOCropBottomToolbar.h"
 
 @class TOCropViewController;
@@ -134,6 +135,11 @@
 /**
  The toolbar view managed by this view controller.
  */
+@property (nonnull, nonatomic, strong, readonly) TOCropTopToolbar *topToolbar;
+
+/**
+ The toolbar view managed by this view controller.
+ */
 @property (nonnull, nonatomic, strong, readonly) TOCropBottomToolbar *toolbar;
 
 /**
@@ -229,6 +235,11 @@
  Default is YES
  */
 @property (nonatomic, assign) BOOL resetAspectRatioEnabled;
+
+/**
+ The position of the Toolbar the default value is `TOCropViewControllerToolbarPositionBottom`.
+ */
+@property (nonatomic, assign) TOCropViewControllerToolbarPosition topToolbarPosition;
 
 /**
  The position of the Toolbar the default value is `TOCropViewControllerToolbarPositionBottom`.

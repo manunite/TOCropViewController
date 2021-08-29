@@ -39,6 +39,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 @property (nonatomic, assign, readwrite) TOCropViewCroppingStyle croppingStyle;
 
 /* Views */
+@property (nonatomic, strong) TOCropTopToolbar *topToolbar;
 @property (nonatomic, strong) TOCropBottomToolbar *toolbar;
 @property (nonatomic, strong, readwrite) TOCropView *cropView;
 @property (nonatomic, strong) UIView *toolbarSnapshotView;
@@ -96,6 +97,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
         #if TARGET_OS_MACCATALYST
         _toolbarPosition = TOCropViewControllerToolbarPositionTop;
         #else
+        _topToolbarPosition = TOCropViewControllerToolbarPositionTop
         _toolbarPosition = TOCropViewControllerToolbarPositionBottom;
         #endif
     }
@@ -1079,6 +1081,15 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
         [self.view addSubview:_cropView];
     }
     return _cropView;
+}
+
+- (TOCropTopToolbar *)topToolbar
+{
+    if (!_topToolbar) {
+      _topToolbar = [[TOCropTopToolbar alloc] initWithFrame:CGRectZero];
+        [self.view addSubview:_topToolbar];
+    }
+    return _topToolbar;
 }
 
 - (TOCropBottomToolbar *)toolbar
