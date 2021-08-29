@@ -135,17 +135,17 @@
 //    [_rotateClockwiseButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
 //    [self addSubview:_rotateClockwiseButton];
     
-//    _resetButton = [UIButton buttonWithType:UIButtonTypeSystem];
-//    _resetButton.contentMode = UIViewContentModeCenter;
-//    _resetButton.tintColor = [UIColor whiteColor];
-//    _resetButton.enabled = NO;
-//    [_resetButton setImage:[TOCropToolbar resetImage] forState:UIControlStateNormal];
-//    [_resetButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-//    _resetButton.accessibilityLabel = NSLocalizedStringFromTableInBundle(@"Reset",
-//                                                                         @"TOCropViewControllerLocalizable",
-//                                                                         resourceBundle,
-//                                                                         nil);
-//    [self addSubview:_resetButton];
+    _resetButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    _resetButton.contentMode = UIViewContentModeCenter;
+    _resetButton.tintColor = [UIColor whiteColor];
+    _resetButton.enabled = NO;
+    [_resetButton setImage:[TOCropBottomToolbar resetImage] forState:UIControlStateNormal];
+    [_resetButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    _resetButton.accessibilityLabel = NSLocalizedStringFromTableInBundle(@"Reset",
+                                                                         @"TOCropViewControllerLocalizable",
+                                                                         resourceBundle,
+                                                                         nil);
+    [self addSubview:_resetButton];
 }
 
 - (void)layoutSubviews
@@ -231,9 +231,9 @@
 //            [buttonsInOrderHorizontally addObject:self.rotateCounterclockwiseButton];
 //        }
         
-//        if (!self.resetButtonHidden) {
-//            [buttonsInOrderHorizontally addObject:self.resetButton];
-//        }
+        if (!self.resetButtonHidden) {
+            [buttonsInOrderHorizontally addObject:self.resetButton];
+        }
         
 //        if (!self.clampButtonHidden) {
 //            [buttonsInOrderHorizontally addObject:self.clampButton];
@@ -269,9 +269,9 @@
 //            [buttonsInOrderVertically addObject:self.rotateCounterclockwiseButton];
 //        }
         
-//        if (!self.resetButtonHidden) {
-//            [buttonsInOrderVertically addObject:self.resetButton];
-//        }
+        if (!self.resetButtonHidden) {
+            [buttonsInOrderVertically addObject:self.resetButton];
+        }
         
 //        if (!self.clampButtonHidden) {
 //            [buttonsInOrderVertically addObject:self.clampButton];
@@ -323,9 +323,9 @@
         if (self.doneButtonTapped)
             self.doneButtonTapped();
     }
-//    else if (button == self.resetButton && self.resetButtonTapped) {
-//        self.resetButtonTapped();
-//    }
+    else if (button == self.resetButton && self.resetButtonTapped) {
+        self.resetButtonTapped();
+    }
 //    else if (button == self.rotateCounterclockwiseButton && self.rotateCounterclockwiseButtonTapped) {
 //        self.rotateCounterclockwiseButtonTapped();
 //    }
@@ -343,13 +343,13 @@
 //    return self.clampButton.frame;
 //}
 
-- (void)setClampButtonHidden:(BOOL)clampButtonHidden {
-    if (_clampButtonHidden == clampButtonHidden)
-        return;
-    
-    _clampButtonHidden = clampButtonHidden;
-    [self setNeedsLayout];
-}
+//- (void)setClampButtonHidden:(BOOL)clampButtonHidden {
+//    if (_clampButtonHidden == clampButtonHidden)
+//        return;
+//
+//    _clampButtonHidden = clampButtonHidden;
+//    [self setNeedsLayout];
+//}
 
 //- (void)setClampButtonGlowing:(BOOL)clampButtonGlowing
 //{
@@ -364,24 +364,24 @@
 //        self.clampButton.tintColor = [UIColor whiteColor];
 //}
 
-- (void)setRotateCounterClockwiseButtonHidden:(BOOL)rotateButtonHidden
+//- (void)setRotateCounterClockwiseButtonHidden:(BOOL)rotateButtonHidden
+//{
+//    if (_rotateCounterclockwiseButtonHidden == rotateButtonHidden)
+//        return;
+//
+//    _rotateCounterclockwiseButtonHidden = rotateButtonHidden;
+//    [self setNeedsLayout];
+//}
+
+- (BOOL)resetButtonEnabled
 {
-    if (_rotateCounterclockwiseButtonHidden == rotateButtonHidden)
-        return;
-    
-    _rotateCounterclockwiseButtonHidden = rotateButtonHidden;
-    [self setNeedsLayout];
+    return self.resetButton.enabled;
 }
 
-//- (BOOL)resetButtonEnabled
-//{
-//    return self.resetButton.enabled;
-//}
-
-//- (void)setResetButtonEnabled:(BOOL)resetButtonEnabled
-//{
-//    self.resetButton.enabled = resetButtonEnabled;
-//}
+- (void)setResetButtonEnabled:(BOOL)resetButtonEnabled
+{
+    self.resetButton.enabled = resetButtonEnabled;
+}
 
 - (void)setDoneButtonHidden:(BOOL)doneButtonHidden {
     if (_doneButtonHidden == doneButtonHidden)
@@ -679,16 +679,16 @@
 
 #pragma mark - Accessors -
 
-- (void)setRotateClockwiseButtonHidden:(BOOL)rotateClockwiseButtonHidden
-{
-    if (_rotateClockwiseButtonHidden == rotateClockwiseButtonHidden) {
-        return;
-    }
-    
-    _rotateClockwiseButtonHidden = rotateClockwiseButtonHidden;
-    
-    [self setNeedsLayout];
-}
+//- (void)setRotateClockwiseButtonHidden:(BOOL)rotateClockwiseButtonHidden
+//{
+//    if (_rotateClockwiseButtonHidden == rotateClockwiseButtonHidden) {
+//        return;
+//    }
+//
+//    _rotateClockwiseButtonHidden = rotateClockwiseButtonHidden;
+//
+//    [self setNeedsLayout];
+//}
 
 - (void)setResetButtonHidden:(BOOL)resetButtonHidden
 {
