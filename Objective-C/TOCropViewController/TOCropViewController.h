@@ -237,16 +237,6 @@
 @property (nonatomic, assign) BOOL resetAspectRatioEnabled;
 
 /**
- The position of the Toolbar the default value is `TOCropViewControllerToolbarPositionBottom`.
- */
-@property (nonatomic, assign) TOCropViewControllerToolbarPosition topToolbarPosition;
-
-/**
- The position of the Toolbar the default value is `TOCropViewControllerToolbarPositionBottom`.
- */
-@property (nonatomic, assign) TOCropViewControllerToolbarPosition bottomToolbarPosition;
-
-/**
  When disabled, an additional rotation button that rotates the canvas in 
  90-degree segments in a clockwise direction is shown in the toolbar.
  
