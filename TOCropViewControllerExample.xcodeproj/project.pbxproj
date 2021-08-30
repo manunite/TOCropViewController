@@ -92,12 +92,12 @@
 		F57211C526DBD8BE00149FAF /* TOCropBottomToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F57211BF26DBD89600149FAF /* TOCropBottomToolbar.m */; };
 		F57211C626DBD8BE00149FAF /* TOCropBottomToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F57211BF26DBD89600149FAF /* TOCropBottomToolbar.m */; };
 		F57211C726DBD8BF00149FAF /* TOCropBottomToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F57211BF26DBD89600149FAF /* TOCropBottomToolbar.m */; };
-		F57211EF26DBD9CF00149FAF /* TOCropBottomToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = F57211EE26DBD9CF00149FAF /* TOCropBottomToolbar.h */; };
-		F57211F026DBD9CF00149FAF /* TOCropBottomToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = F57211EE26DBD9CF00149FAF /* TOCropBottomToolbar.h */; };
+		F57211EF26DBD9CF00149FAF /* TOCropBottomToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = F57211EE26DBD9CF00149FAF /* TOCropBottomToolbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F57211F026DBD9CF00149FAF /* TOCropBottomToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = F57211EE26DBD9CF00149FAF /* TOCropBottomToolbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F57211F826DBDB2B00149FAF /* TOCropTopToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F57211F626DBDB2B00149FAF /* TOCropTopToolbar.m */; };
 		F57211F926DBDB2B00149FAF /* TOCropTopToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F57211F626DBDB2B00149FAF /* TOCropTopToolbar.m */; };
-		F57211FA26DBDB2B00149FAF /* TOCropTopToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = F57211F726DBDB2B00149FAF /* TOCropTopToolbar.h */; };
-		F57211FB26DBDB2B00149FAF /* TOCropTopToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = F57211F726DBDB2B00149FAF /* TOCropTopToolbar.h */; };
+		F57211FA26DBDB2B00149FAF /* TOCropTopToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = F57211F726DBDB2B00149FAF /* TOCropTopToolbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F57211FB26DBDB2B00149FAF /* TOCropTopToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = F57211F726DBDB2B00149FAF /* TOCropTopToolbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F572120126DBE0F200149FAF /* TOCropTopToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F57211F626DBDB2B00149FAF /* TOCropTopToolbar.m */; };
 		F572120226DBE0F200149FAF /* TOCropTopToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F57211F626DBDB2B00149FAF /* TOCropTopToolbar.m */; };
 		F572120326DBE0F300149FAF /* TOCropTopToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F57211F626DBDB2B00149FAF /* TOCropTopToolbar.m */; };
@@ -466,12 +466,12 @@
 			children = (
 				F57211F726DBDB2B00149FAF /* TOCropTopToolbar.h */,
 				F57211F626DBDB2B00149FAF /* TOCropTopToolbar.m */,
+				F57211EE26DBD9CF00149FAF /* TOCropBottomToolbar.h */,
+				F57211BF26DBD89600149FAF /* TOCropBottomToolbar.m */,
 				22DB4D8E1B234D07008B8466 /* TOCropOverlayView.h */,
 				22DB4D8F1B234D07008B8466 /* TOCropOverlayView.m */,
 				22DB4D901B234D07008B8466 /* TOCropScrollView.h */,
 				22DB4D911B234D07008B8466 /* TOCropScrollView.m */,
-				F57211EE26DBD9CF00149FAF /* TOCropBottomToolbar.h */,
-				F57211BF26DBD89600149FAF /* TOCropBottomToolbar.m */,
 				22DB4D941B234D07008B8466 /* TOCropView.h */,
 				22DB4D951B234D07008B8466 /* TOCropView.m */,
 			);
@@ -488,11 +488,11 @@
 				2238CF451FC02AE00081B957 /* TOCropViewController.h in Headers */,
 				220C8EB22106344D00A9B25D /* UIImage+CropRotate.h in Headers */,
 				144B8CD81D22CD650085D774 /* TOCropView.h in Headers */,
-				144B8CD11D22CD650085D774 /* TOCropViewControllerTransitioning.h in Headers */,
 				F57211F026DBD9CF00149FAF /* TOCropBottomToolbar.h in Headers */,
+				F57211FB26DBDB2B00149FAF /* TOCropTopToolbar.h in Headers */,
+				144B8CD11D22CD650085D774 /* TOCropViewControllerTransitioning.h in Headers */,
 				144B8CD21D22CD650085D774 /* TOActivityCroppedImageProvider.h in Headers */,
 				FE3E0E3A21098448004DAE93 /* TOCropViewConstants.h in Headers */,
-				F57211FB26DBDB2B00149FAF /* TOCropTopToolbar.h in Headers */,
 				144B8CD31D22CD650085D774 /* TOCroppedImageAttributes.h in Headers */,
 				144B8CD61D22CD650085D774 /* TOCropScrollView.h in Headers */,
 				144B8CD51D22CD650085D774 /* TOCropOverlayView.h in Headers */,
@@ -504,10 +504,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				04262DA520F6FD1000024177 /* CropViewController.h in Headers */,
-				F57211FA26DBDB2B00149FAF /* TOCropTopToolbar.h in Headers */,
-				F57211EF26DBD9CF00149FAF /* TOCropBottomToolbar.h in Headers */,
 				04262DA320F6FC4600024177 /* TOCropView.h in Headers */,
+				F57211FA26DBDB2B00149FAF /* TOCropTopToolbar.h in Headers */,
 				04262DA420F6FC4600024177 /* TOCropViewController.h in Headers */,
+				F57211EF26DBD9CF00149FAF /* TOCropBottomToolbar.h in Headers */,
 				220C8EA82106341600A9B25D /* TOCropViewConstants.h in Headers */,
 				220C8EB12106344D00A9B25D /* UIImage+CropRotate.h in Headers */,
 				04262D9C20F6FC4600024177 /* TOCropViewControllerTransitioning.h in Headers */,
