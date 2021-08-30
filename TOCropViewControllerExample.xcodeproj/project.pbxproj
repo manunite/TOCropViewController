@@ -16,7 +16,7 @@
 		04262DA120F6FC4600024177 /* TOCropScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DB4D901B234D07008B8466 /* TOCropScrollView.h */; };
 		04262DA320F6FC4600024177 /* TOCropView.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DB4D941B234D07008B8466 /* TOCropView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04262DA420F6FC4600024177 /* TOCropViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2238CF441FC02AE00081B957 /* TOCropViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		04262DA520F6FD1000024177 /* CropViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2238CF3E1FC029A90081B957 /* CropViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04262DA520F6FD1000024177 /* CropViewControllerJJGram.h in Headers */ = {isa = PBXBuildFile; fileRef = 2238CF3E1FC029A90081B957 /* CropViewControllerJJGram.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		144B8CD11D22CD650085D774 /* TOCropViewControllerTransitioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DB4D891B234D07008B8466 /* TOCropViewControllerTransitioning.h */; };
 		144B8CD21D22CD650085D774 /* TOActivityCroppedImageProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DB4D9C1B234D4F008B8466 /* TOActivityCroppedImageProvider.h */; };
 		144B8CD31D22CD650085D774 /* TOCroppedImageAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 22BF961E1B2CD017009F4785 /* TOCroppedImageAttributes.h */; };
@@ -52,7 +52,7 @@
 		2238CF281FC0269C0081B957 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2238CF261FC0269C0081B957 /* Main.storyboard */; };
 		2238CF2A1FC0269C0081B957 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2238CF291FC0269C0081B957 /* Assets.xcassets */; };
 		2238CF2D1FC0269C0081B957 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2238CF2B1FC0269C0081B957 /* LaunchScreen.storyboard */; };
-		2238CF361FC029880081B957 /* CropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238CF351FC029880081B957 /* CropViewController.swift */; };
+		2238CF361FC029880081B957 /* CropViewControllerJJGram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238CF351FC029880081B957 /* CropViewControllerJJGram.swift */; };
 		2238CF451FC02AE00081B957 /* TOCropViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2238CF441FC02AE00081B957 /* TOCropViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		223DCEB61FBAA85D00F99209 /* TOCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DB4D831B234CFA008B8466 /* TOCropViewController.m */; };
 		22B68F951FFB380700601B1A /* TOCropViewControllerTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DB4D8A1B234D07008B8466 /* TOCropViewControllerTransitioning.m */; };
@@ -76,7 +76,7 @@
 		22DB4D991B234D07008B8466 /* TOCropScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DB4D911B234D07008B8466 /* TOCropScrollView.m */; };
 		22DB4D9B1B234D07008B8466 /* TOCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DB4D951B234D07008B8466 /* TOCropView.m */; };
 		22DB4D9E1B234D4F008B8466 /* TOActivityCroppedImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DB4D9D1B234D4F008B8466 /* TOActivityCroppedImageProvider.m */; };
-		22DEA39F1FC1293A000FA1CB /* CropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238CF351FC029880081B957 /* CropViewController.swift */; };
+		22DEA39F1FC1293A000FA1CB /* CropViewControllerJJGram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238CF351FC029880081B957 /* CropViewControllerJJGram.swift */; };
 		2F5062E71F53E2D900AA9F14 /* TOCropViewControllerExample-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2F5062DC1F53E2D900AA9F14 /* TOCropViewControllerExample-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2F5062EB1F53E31F00AA9F14 /* TOCropViewControllerTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DB4D8A1B234D07008B8466 /* TOCropViewControllerTransitioning.m */; };
 		2F5062EC1F53E31F00AA9F14 /* TOActivityCroppedImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DB4D9D1B234D4F008B8466 /* TOActivityCroppedImageProvider.m */; };
@@ -171,9 +171,9 @@
 		2238CF291FC0269C0081B957 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2238CF2C1FC0269C0081B957 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2238CF2E1FC0269C0081B957 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2238CF351FC029880081B957 /* CropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropViewController.swift; sourceTree = "<group>"; };
+		2238CF351FC029880081B957 /* CropViewControllerJJGram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropViewControllerJJGram.swift; sourceTree = "<group>"; };
 		2238CF3C1FC029A90081B957 /* CropViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CropViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2238CF3E1FC029A90081B957 /* CropViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CropViewController.h; sourceTree = "<group>"; };
+		2238CF3E1FC029A90081B957 /* CropViewControllerJJGram.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CropViewControllerJJGram.h; sourceTree = "<group>"; };
 		2238CF3F1FC029A90081B957 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2238CF441FC02AE00081B957 /* TOCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropViewController.h; sourceTree = "<group>"; };
 		223DCEB71FBAA91300F99209 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
@@ -423,20 +423,20 @@
 		2238CF331FC027380081B957 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
-				2238CF341FC027550081B957 /* CropViewController */,
+				2238CF341FC027550081B957 /* CropViewControllerJJGram */,
 				2238CF211FC0269C0081B957 /* CropViewControllerExample */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
 		};
-		2238CF341FC027550081B957 /* CropViewController */ = {
+		2238CF341FC027550081B957 /* CropViewControllerJJGram */ = {
 			isa = PBXGroup;
 			children = (
-				2238CF351FC029880081B957 /* CropViewController.swift */,
-				2238CF3E1FC029A90081B957 /* CropViewController.h */,
+				2238CF351FC029880081B957 /* CropViewControllerJJGram.swift */,
+				2238CF3E1FC029A90081B957 /* CropViewControllerJJGram.h */,
 				2238CF3F1FC029A90081B957 /* Info.plist */,
 			);
-			path = CropViewController;
+			path = CropViewControllerJJGram;
 			sourceTree = "<group>";
 		};
 		2238CF581FC030C30081B957 /* Frameworks */ = {
@@ -503,7 +503,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04262DA520F6FD1000024177 /* CropViewController.h in Headers */,
+				04262DA520F6FD1000024177 /* CropViewControllerJJGram.h in Headers */,
 				04262DA320F6FC4600024177 /* TOCropView.h in Headers */,
 				F57211FA26DBDB2B00149FAF /* TOCropTopToolbar.h in Headers */,
 				04262DA420F6FC4600024177 /* TOCropViewController.h in Headers */,
@@ -837,7 +837,7 @@
 				2238CF251FC0269C0081B957 /* ViewController.swift in Sources */,
 				2238CF231FC0269C0081B957 /* AppDelegate.swift in Sources */,
 				F572120226DBE0F200149FAF /* TOCropTopToolbar.m in Sources */,
-				2238CF361FC029880081B957 /* CropViewController.swift in Sources */,
+				2238CF361FC029880081B957 /* CropViewControllerJJGram.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -854,7 +854,7 @@
 				22B68FA41FFB3C0800601B1A /* TOCropScrollView.m in Sources */,
 				22B68FA61FFB3C0800601B1A /* TOCropView.m in Sources */,
 				22B68FA71FFB3C0800601B1A /* TOCropViewController.m in Sources */,
-				22DEA39F1FC1293A000FA1CB /* CropViewController.swift in Sources */,
+				22DEA39F1FC1293A000FA1CB /* CropViewControllerJJGram.swift in Sources */,
 				F57211C426DBD8BE00149FAF /* TOCropBottomToolbar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
