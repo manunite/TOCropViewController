@@ -582,8 +582,11 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     //Prepare the list that will be fed to the alert view/controller
     
     // Ratio titles according to the order of enum TOCropViewControllerAspectRatioPreset
-    NSArray<NSString *> *portraitRatioTitles = @[originalButtonTitle, squareButtonTitle, @"2:3", @"3:5", @"3:4", @"4:5", @"5:7", @"9:16"];
-    NSArray<NSString *> *landscapeRatioTitles = @[originalButtonTitle, squareButtonTitle, @"3:2", @"5:3", @"4:3", @"5:4", @"7:5", @"16:9"];
+//    NSArray<NSString *> *portraitRatioTitles = @[originalButtonTitle, squareButtonTitle, @"2:3", @"3:5", @"3:4", @"4:5", @"5:7", @"9:16"];
+//    NSArray<NSString *> *landscapeRatioTitles = @[originalButtonTitle, squareButtonTitle, @"3:2", @"5:3", @"4:3", @"5:4", @"7:5", @"16:9"];
+  
+  NSArray<NSString *> *portraitRatioTitles = @[originalButtonTitle, squareButtonTitle, @"2:3", @"3:5", @"5:7"];
+  NSArray<NSString *> *landscapeRatioTitles = @[originalButtonTitle, squareButtonTitle, @"3:2", @"5:3", @"4:3", @"5:4", @"7:5", @"16:9"];
 
     NSMutableArray *ratioValues = [NSMutableArray array];
     NSMutableArray *itemStrings = [NSMutableArray array];
@@ -649,18 +652,18 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
         case TOCropViewControllerAspectRatioPreset5x3:
             aspectRatio = CGSizeMake(5.0f, 3.0f);
             break;
-        case TOCropViewControllerAspectRatioPreset4x3:
-            aspectRatio = CGSizeMake(4.0f, 3.0f);
-            break;
-        case TOCropViewControllerAspectRatioPreset5x4:
-            aspectRatio = CGSizeMake(5.0f, 4.0f);
-            break;
+//        case TOCropViewControllerAspectRatioPreset4x3:
+//            aspectRatio = CGSizeMake(4.0f, 3.0f);
+//            break;
+//        case TOCropViewControllerAspectRatioPreset5x4:
+//            aspectRatio = CGSizeMake(5.0f, 4.0f);
+//            break;
         case TOCropViewControllerAspectRatioPreset7x5:
             aspectRatio = CGSizeMake(7.0f, 5.0f);
             break;
-        case TOCropViewControllerAspectRatioPreset16x9:
-            aspectRatio = CGSizeMake(16.0f, 9.0f);
-            break;
+//        case TOCropViewControllerAspectRatioPreset16x9:
+//            aspectRatio = CGSizeMake(16.0f, 9.0f);
+//            break;
         case TOCropViewControllerAspectRatioPresetCustom:
             aspectRatio = self.customAspectRatio;
             break;
