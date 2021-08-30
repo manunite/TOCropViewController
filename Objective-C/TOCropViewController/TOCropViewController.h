@@ -236,55 +236,12 @@
  */
 @property (nonatomic, assign) BOOL resetAspectRatioEnabled;
 
-/**
- When disabled, an additional rotation button that rotates the canvas in 
- 90-degree segments in a clockwise direction is shown in the toolbar.
- 
- Default is NO.
- */
-@property (nonatomic, assign) BOOL rotateClockwiseButtonHidden;
-
 /*
  If this controller is embedded in UINavigationController its navigation bar
  is hidden by default. Set this property to false to show the navigation bar.
  This must be set before this controller is presented.
  */
 @property (nonatomic, assign) BOOL hidesNavigationBar;
-
-/**
- When enabled, hides the rotation button, as well as the alternative rotation 
- button visible when `showClockwiseRotationButton` is set to YES.
- 
- Default is NO.
- */
-@property (nonatomic, assign) BOOL rotateButtonsHidden;
-
-/**
- When enabled, hides the 'Reset' button on the toolbar.
-
- Default is NO.
- */
-@property (nonatomic, assign) BOOL resetButtonHidden;
-/**
- When enabled, hides the 'Aspect Ratio Picker' button on the toolbar.
- 
- Default is NO.
- */
-@property (nonatomic, assign) BOOL aspectRatioPickerButtonHidden;
-
-/**
- When enabled, hides the 'Done' button on the toolbar.
-
- Default is NO.
- */
-@property (nonatomic, assign) BOOL doneButtonHidden;
-
-/**
- When enabled, hides the 'Cancel' button on the toolbar.
-
- Default is NO.
- */
-@property (nonatomic, assign) BOOL cancelButtonHidden;
 
 /** 
  If `showActivitySheetOnDone` is true, then these activity items will 

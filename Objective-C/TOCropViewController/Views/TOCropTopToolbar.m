@@ -157,7 +157,10 @@
     _clampButtonGlowing = clampButtonGlowing;
 
     if (_clampButtonGlowing)
-        self.clampButton.tintColor = nil;
+      self.clampButton.tintColor = [UIColor colorWithRed: 0.6235
+                                                   green: 0.8941
+                                                    blue: 0.8196
+                                                   alpha: 1.0];
     else
         self.clampButton.tintColor = [UIColor whiteColor];
 }

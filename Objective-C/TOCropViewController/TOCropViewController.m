@@ -564,7 +564,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 {
     if (self.cropView.aspectRatioLockEnabled) {
         self.cropView.aspectRatioLockEnabled = NO;
-//        self.toolbar.clampButtonGlowing = NO;
+        self.topToolbar.clampButtonGlowing = NO;
         return;
     }
     
@@ -626,7 +626,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     alertController.modalPresentationStyle = UIModalPresentationPopover;
     UIPopoverPresentationController *presentationController = [alertController popoverPresentationController];
     presentationController.sourceView = self.bottomToolbar;
-//    presentationController.sourceRect = self.toolbar.clampButtonFrame;
+    presentationController.sourceRect = self.topToolbar.clampButtonFrame;
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -1120,11 +1120,8 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 
 - (void)setAspectRatioLockEnabled:(BOOL)aspectRatioLockEnabled
 {
-//    self.toolbar.clampButtonGlowing = aspectRatioLockEnabled;
+    self.topToolbar.clampButtonGlowing = aspectRatioLockEnabled;
     self.cropView.aspectRatioLockEnabled = aspectRatioLockEnabled;
-    if (!self.aspectRatioPickerButtonHidden) {
-        self.aspectRatioPickerButtonHidden = (aspectRatioLockEnabled && self.resetAspectRatioEnabled == NO);
-    }
 }
 
 - (void)setAspectRatioLockDimensionSwapEnabled:(BOOL)aspectRatioLockDimensionSwapEnabled
@@ -1137,71 +1134,9 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     return self.cropView.aspectRatioLockEnabled;
 }
 
-- (void)setRotateButtonsHidden:(BOOL)rotateButtonsHidden
-{
-//    self.toolbar.rotateCounterclockwiseButtonHidden = rotateButtonsHidden;
-//    self.toolbar.rotateClockwiseButtonHidden = rotateButtonsHidden;
-}
-
-- (void)setResetButtonHidden:(BOOL)resetButtonHidden
-{
-    self.bottomToolbar.resetButtonHidden = resetButtonHidden;
-}
-
-- (BOOL)rotateButtonsHidden
-{
-//    return self.toolbar.rotateCounterclockwiseButtonHidden && self.toolbar.rotateClockwiseButtonHidden;
-  return true;
-}
-
-- (void)setRotateClockwiseButtonHidden:(BOOL)rotateClockwiseButtonHidden
-{
-//    self.toolbar.rotateClockwiseButtonHidden = rotateClockwiseButtonHidden;
-}
-
-- (BOOL)rotateClockwiseButtonHidden
-{
-//    return self.toolbar.rotateClockwiseButtonHidden;
-  return true;
-}
-
-- (void)setAspectRatioPickerButtonHidden:(BOOL)aspectRatioPickerButtonHidden
-{
-//    self.toolbar.clampButtonHidden = aspectRatioPickerButtonHidden;
-}
-
-- (BOOL)aspectRatioPickerButtonHidden
-{
-//    return self.toolbar.clampButtonHidden;
-  return true;
-}
-
-- (void)setDoneButtonHidden:(BOOL)doneButtonHidden
-{
-    self.bottomToolbar.doneButtonHidden = doneButtonHidden;
-}
-
-- (BOOL)doneButtonHidden
-{
-    return self.bottomToolbar.doneButtonHidden;
-}
-
-- (void)setCancelButtonHidden:(BOOL)cancelButtonHidden
-{
-    self.bottomToolbar.cancelButtonHidden = cancelButtonHidden;
-}
-
-- (BOOL)cancelButtonHidden
-{
-    return self.bottomToolbar.cancelButtonHidden;
-}
-
 - (void)setResetAspectRatioEnabled:(BOOL)resetAspectRatioEnabled
 {
     self.cropView.resetAspectRatioEnabled = resetAspectRatioEnabled;
-    if (!self.aspectRatioPickerButtonHidden) {
-        self.aspectRatioPickerButtonHidden = (resetAspectRatioEnabled == NO && self.aspectRatioLockEnabled);
-    }
 }
 
 - (void)setCustomAspectRatio:(CGSize)customAspectRatio
