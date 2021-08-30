@@ -54,6 +54,14 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerToolbarPosition) {
     TOCropViewControllerToolbarPositionTop     // Bar is placed along the top in portrait (Respects the status bar)
 };
 
+/**
+ The shape of the cropping region of this crop view controller
+ */
+typedef NS_ENUM(NSInteger, TOCropToolbarType) {
+    TOCropViewCroppingStyleTop,
+    TOCropViewCroppingStyleBottom
+};
+
 static inline NSBundle *TO_CROP_VIEW_RESOURCE_BUNDLE_FOR_OBJECT(NSObject *object) {
 #if SWIFT_PACKAGE
 	// SPM is supposed to support the keyword SWIFTPM_MODULE_BUNDLE

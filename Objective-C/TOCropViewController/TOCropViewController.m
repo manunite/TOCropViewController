@@ -122,7 +122,8 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 
     // Layout the views initially
     self.cropView.frame = [self frameForCropViewWithVerticalLayout:self.verticalLayout];
-    self.bottomToolbar.frame = [self frameForToolbarWithVerticalLayout:self.verticalLayout];
+    self.topToolbar.frame = [self frameForToolbarWithVerticalLayout:self.verticalLayout type:TOCropViewCroppingStyleBottom];
+    self.bottomToolbar.frame = [self frameForToolbarWithVerticalLayout:self.verticalLayout type:TOCropViewCroppingStyleTop];
 
     // Set up toolbar default behaviour
 //    self.toolbar.clampButtonHidden = self.aspectRatioPickerButtonHidden || circularMode;
@@ -267,7 +268,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     return UIRectEdgeAll;
 }
 
-- (CGRect)frameForToolbarWithVerticalLayout:(BOOL)verticalLayout
+- (CGRect)frameForToolbarWithVerticalLayout:(BOOL)verticalLayout type:(TOCropToolbarType)type
 {
     UIEdgeInsets insets = self.statusBarSafeInsets;
 
@@ -283,10 +284,19 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
         frame.size.width = CGRectGetWidth(self.view.bounds);
         frame.size.height = kTOCropViewControllerToolbarHeight;
 
-        if (self.bottomToolbarPosition == TOCropViewControllerToolbarPositionBottom) {
-            frame.origin.y = CGRectGetHeight(self.view.bounds) - (frame.size.height + insets.bottom);
-        } else {
-            frame.origin.y = insets.top;
+        if (type == TOCropViewCroppingStyleTop) {
+          if (self.topToolbarPosition == TOCropViewControllerToolbarPositionBottom) {
+              frame.origin.y = CGRectGetHeight(self.view.bounds) - (frame.size.height + insets.bottom);
+          } else {
+              frame.origin.y = insets.top;
+          }
+        }
+        else if (type == TOCropViewCroppingStyleBottom) {
+          if (self.bottomToolbarPosition == TOCropViewControllerToolbarPositionBottom) {
+              frame.origin.y = CGRectGetHeight(self.view.bounds) - (frame.size.height + insets.bottom);
+          } else {
+              frame.origin.y = insets.top;
+          }
         }
     }
     
@@ -315,7 +325,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     if (!verticalLayout) {
         frame.origin.x = kTOCropViewControllerToolbarHeight + insets.left;
         frame.size.width = CGRectGetWidth(bounds) - frame.origin.x;
-		frame.size.height = CGRectGetHeight(bounds);
+        frame.size.height = CGRectGetHeight(bounds);
     }
     else { // Vertical layout
         frame.size.height = CGRectGetHeight(bounds);
@@ -326,7 +336,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
             frame.origin.y += (insets.top + kTOCropViewControllerToolbarHeight);
             frame.size.height -= (insets.top + insets.bottom + (2 * kTOCropViewControllerToolbarHeight));
         } else if (self.bottomToolbarPosition == TOCropViewControllerToolbarPositionTop) {
-			frame.origin.y = kTOCropViewControllerToolbarHeight + insets.top;
+            frame.origin.y = kTOCropViewControllerToolbarHeight + insets.top;
             frame.size.height -= frame.origin.y;
         }
     }
@@ -455,7 +465,8 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     }
 
     [UIView performWithoutAnimation:^{
-        self.bottomToolbar.frame = [self frameForToolbarWithVerticalLayout:self.verticalLayout];
+        self.topToolbar.frame = [self frameForToolbarWithVerticalLayout:self.verticalLayout type: TOCropViewCroppingStyleTop];
+        self.bottomToolbar.frame = [self frameForToolbarWithVerticalLayout:self.verticalLayout type: TOCropViewCroppingStyleBottom];
         [self adjustToolbarInsets];
         [self.bottomToolbar setNeedsLayout];
     }];
@@ -477,15 +488,27 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     [self.view addSubview:self.toolbarSnapshotView];
 
     // Set up the toolbar frame to be just off t
-    CGRect frame = [self frameForToolbarWithVerticalLayout:UIInterfaceOrientationIsPortrait(toInterfaceOrientation)];
+    CGRect frame1 = [self frameForToolbarWithVerticalLayout:UIInterfaceOrientationIsPortrait(toInterfaceOrientation) type: TOCropViewCroppingStyleTop];
     if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-        frame.origin.x = -frame.size.width;
+        frame1.origin.x = -frame1.size.width;
     }
     else {
-        frame.origin.y = self.view.bounds.size.height;
+        frame1.origin.y = self.view.bounds.size.height;
     }
-    self.bottomToolbar.frame = frame;
+    self.topToolbar.frame = frame1;
 
+    [self.topToolbar layoutIfNeeded];
+    self.topToolbar.alpha = 0.0f;
+  
+  CGRect frame2 = [self frameForToolbarWithVerticalLayout:UIInterfaceOrientationIsPortrait(toInterfaceOrientation) type: TOCropViewCroppingStyleBottom];
+    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+        frame2.origin.x = -frame2.size.width;
+    }
+    else {
+        frame2.origin.y = self.view.bounds.size.height;
+    }
+    self.bottomToolbar.frame = frame2;
+  
     [self.bottomToolbar layoutIfNeeded];
     self.bottomToolbar.alpha = 0.0f;
     
@@ -498,7 +521,9 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 - (void)_willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     //Remove all animations in the toolbar
-    self.bottomToolbar.frame = [self frameForToolbarWithVerticalLayout:!UIInterfaceOrientationIsLandscape(toInterfaceOrientation)];
+    self.topToolbar.frame = [self frameForToolbarWithVerticalLayout:!UIInterfaceOrientationIsLandscape(toInterfaceOrientation) type:TOCropViewCroppingStyleTop];
+  
+    self.bottomToolbar.frame = [self frameForToolbarWithVerticalLayout:!UIInterfaceOrientationIsLandscape(toInterfaceOrientation) type:TOCropViewCroppingStyleBottom];
     [self.bottomToolbar.layer removeAllAnimations];
     for (CALayer *sublayer in self.bottomToolbar.layer.sublayers) {
         [sublayer removeAllAnimations];
@@ -512,7 +537,8 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
                      animations:
     ^{
         self.cropView.frame = [self frameForCropViewWithVerticalLayout:!UIInterfaceOrientationIsLandscape(toInterfaceOrientation)];
-        self.bottomToolbar.frame = [self frameForToolbarWithVerticalLayout:UIInterfaceOrientationIsPortrait(toInterfaceOrientation)];
+        self.bottomToolbar.frame = [self frameForToolbarWithVerticalLayout:UIInterfaceOrientationIsPortrait(toInterfaceOrientation) type:TOCropViewCroppingStyleTop];
+        self.bottomToolbar.frame = [self frameForToolbarWithVerticalLayout:UIInterfaceOrientationIsPortrait(toInterfaceOrientation) type:TOCropViewCroppingStyleBottom];
         [self.cropView performRelayoutForRotation];
     } completion:nil];
 
