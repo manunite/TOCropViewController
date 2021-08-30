@@ -99,95 +99,26 @@
 #endif
     
     if (verticalLayout == NO) {
-        CGFloat insetPadding = 10.0f;
-        
-        // Work out the cancel button frame
-        CGRect frame = CGRectZero;
-        frame.size.height = 44.0f;
-        frame.size.width = 44.0f;
-        
-        CGRect containerRect = CGRectIntegral((CGRect){0,frame.origin.y,44.0f,44.0f});
-
-#if TOCROPTOPTOOLBAR_DEBUG_SHOWING_BUTTONS_CONTAINER_RECT
-        containerView.frame = containerRect;
-#endif
-        
-        CGSize buttonSize = (CGSize){44.0f,44.0f};
+        CGSize buttonSize = (CGSize){44.0f, 44.0f};
         
         NSMutableArray *buttonsInOrderHorizontally = [NSMutableArray new];
         if (!self.rotateCounterclockwiseButtonHidden) {
             [buttonsInOrderHorizontally addObject:self.rotateCounterclockwiseButton];
+        }
+      
+        if (!self.rotateClockwiseButtonHidden) {
+            [buttonsInOrderHorizontally addObject:self.rotateClockwiseButton];
         }
         
         if (!self.clampButtonHidden) {
             [buttonsInOrderHorizontally addObject:self.clampButton];
         }
         
-        if (!self.rotateClockwiseButtonHidden) {
-            [buttonsInOrderHorizontally addObject:self.rotateClockwiseButton];
-        }
-        [self layoutToolbarButtons:buttonsInOrderHorizontally withSameButtonSize:buttonSize inContainerRect:containerRect horizontally:YES];
-    }
-    else {
-        CGRect frame = CGRectZero;
-        frame.size.height = 44.0f;
-        frame.size.width = 44.0f;
-        frame.origin.y = CGRectGetHeight(self.bounds) - 44.0f;
+        float width = self.bounds.size.width;
         
-        frame.origin.y = self.statusBarHeightInset;
-        frame.size.width = 44.0f;
-        frame.size.height = 44.0f;
-        
-        CGRect containerRect = (CGRect){0,10,44.0f,44.0f};
-        
-#if TOCROPTOPTOOLBAR_DEBUG_SHOWING_BUTTONS_CONTAINER_RECT
-        containerView.frame = containerRect;
-#endif
-        
-        CGSize buttonSize = (CGSize){44.0f,44.0f};
-        
-        NSMutableArray *buttonsInOrderVertically = [NSMutableArray new];
-        if (!self.rotateCounterclockwiseButtonHidden) {
-            [buttonsInOrderVertically addObject:self.rotateCounterclockwiseButton];
-        }
-        
-        if (!self.clampButtonHidden) {
-            [buttonsInOrderVertically addObject:self.clampButton];
-        }
-        
-        if (!self.rotateClockwiseButtonHidden) {
-            [buttonsInOrderVertically addObject:self.rotateClockwiseButton];
-        }
-        
-        [self layoutToolbarButtons:buttonsInOrderVertically withSameButtonSize:buttonSize inContainerRect:containerRect horizontally:NO];
-    }
-}
-
-// The convenience method for calculating button's frame inside of the container rect
-- (void)layoutToolbarButtons:(NSArray *)buttons withSameButtonSize:(CGSize)size inContainerRect:(CGRect)containerRect horizontally:(BOOL)horizontally
-{
-    if (buttons.count > 0){
-        NSInteger count = buttons.count;
-        CGFloat fixedSize = horizontally ? size.width : size.height;
-        CGFloat maxLength = horizontally ? CGRectGetWidth(containerRect) : CGRectGetHeight(containerRect);
-        CGFloat padding = (maxLength - fixedSize * count) / (count + 1);
-        
-        for (NSInteger i = 0; i < count; i++) {
-            UIButton *button = buttons[i];
-            CGFloat sameOffset = horizontally ? fabs(CGRectGetHeight(containerRect)-CGRectGetHeight(button.bounds)) : fabs(CGRectGetWidth(containerRect)-CGRectGetWidth(button.bounds));
-            CGFloat diffOffset = padding + i * (fixedSize + padding);
-            CGPoint origin = horizontally ? CGPointMake(diffOffset, sameOffset) : CGPointMake(sameOffset, diffOffset);
-            if (horizontally) {
-                origin.x += CGRectGetMinX(containerRect);
-                if (@available(iOS 13.0, *)) {
-                    UIImage *image = button.imageView.image;
-                    button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, image.baselineOffsetFromBottom, 0);
-                }
-            } else {
-                origin.y += CGRectGetMinY(containerRect);
-            }
-            button.frame = (CGRect){origin, size};
-        }
+        self.rotateCounterclockwiseButton.frame = CGRectMake(10, 0, buttonSize.width, buttonSize.height);
+        self.rotateClockwiseButton.frame = CGRectMake(width / 2.0 - 22.0, 0, buttonSize.width, buttonSize.height);
+        self.clampButton.frame = CGRectMake(width - 44.0 - 10.0, 0, buttonSize.width, buttonSize.height);
     }
 }
 
