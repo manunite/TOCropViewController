@@ -213,11 +213,19 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
     }
     
     /**
+    The position of the Toolbar the default value is `TOCropViewControllerToolbarPositionBottom`.
+    */
+    public var topToolbarPosition: CropViewControllerToolbarPosition {
+        set { toCropViewController.topToolbarPosition = newValue }
+        get { return toCropViewController.topToolbarPosition }
+    }
+  
+    /**
      The position of the Toolbar the default value is `TOCropViewControllerToolbarPositionBottom`.
      */
-    public var toolbarPosition: CropViewControllerToolbarPosition {
-        set { toCropViewController.toolbarPosition = newValue }
-        get { return toCropViewController.toolbarPosition }
+    public var bottomToolbarPosition: CropViewControllerToolbarPosition {
+        set { toCropViewController.bottomToolbarPosition = newValue }
+        get { return toCropViewController.bottomToolbarPosition }
     }
     
     /**
@@ -385,8 +393,8 @@ open class CropViewController: UIViewController, TOCropViewControllerDelegate {
     /**
      The toolbar managed by this view controller.
      */
-    public var toolbar: TOCropBottomToolbar {
-        return toCropViewController.toolbar
+    public var bottomToolbar: TOCropBottomToolbar {
+        return toCropViewController.bottomToolbar
     }
 
     /*

@@ -40,7 +40,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 
 /* Views */
 @property (nonatomic, strong) TOCropTopToolbar *topToolbar;
-@property (nonatomic, strong) TOCropBottomToolbar *toolbar;
+@property (nonatomic, strong) TOCropBottomToolbar *bottomToolbar;
 @property (nonatomic, strong, readwrite) TOCropView *cropView;
 @property (nonatomic, strong) UIView *toolbarSnapshotView;
 @property (nonatomic, strong, readwrite) UILabel *titleLabel;
@@ -95,10 +95,10 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
         _aspectRatioPreset = TOCropViewControllerAspectRatioPresetOriginal;
 
         #if TARGET_OS_MACCATALYST
-        _toolbarPosition = TOCropViewControllerToolbarPositionTop;
+        _bottomToolbarPosition = TOCropViewControllerToolbarPositionTop;
         #else
-        _topToolbarPosition = TOCropViewControllerToolbarPositionTop
-        _toolbarPosition = TOCropViewControllerToolbarPositionBottom;
+        _topToolbarPosition = TOCropViewControllerToolbarPositionTop;
+        _bottomToolbarPosition = TOCropViewControllerToolbarPositionBottom;
         #endif
     }
 	
@@ -122,7 +122,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 
     // Layout the views initially
     self.cropView.frame = [self frameForCropViewWithVerticalLayout:self.verticalLayout];
-    self.toolbar.frame = [self frameForToolbarWithVerticalLayout:self.verticalLayout];
+    self.bottomToolbar.frame = [self frameForToolbarWithVerticalLayout:self.verticalLayout];
 
     // Set up toolbar default behaviour
 //    self.toolbar.clampButtonHidden = self.aspectRatioPickerButtonHidden || circularMode;
@@ -130,9 +130,9 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     
     // Set up the toolbar button actions
     __weak typeof(self) weakSelf = self;
-    self.toolbar.doneButtonTapped   = ^{ [weakSelf doneButtonTapped]; };
-    self.toolbar.cancelButtonTapped = ^{ [weakSelf cancelButtonTapped]; };
-    self.toolbar.resetButtonTapped = ^{ [weakSelf resetCropViewLayout]; };
+    self.bottomToolbar.doneButtonTapped   = ^{ [weakSelf doneButtonTapped]; };
+    self.bottomToolbar.cancelButtonTapped = ^{ [weakSelf cancelButtonTapped]; };
+    self.bottomToolbar.resetButtonTapped = ^{ [weakSelf resetCropViewLayout]; };
 //    self.toolbar.clampButtonTapped = ^{ [weakSelf showAspectRatioDialog]; };
 //    self.toolbar.rotateCounterclockwiseButtonTapped = ^{ [weakSelf rotateCropViewCounterclockwise]; };
 //    self.toolbar.rotateClockwiseButtonTapped        = ^{ [weakSelf rotateCropViewClockwise]; };
@@ -283,7 +283,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
         frame.size.width = CGRectGetWidth(self.view.bounds);
         frame.size.height = kTOCropViewControllerToolbarHeight;
 
-        if (self.toolbarPosition == TOCropViewControllerToolbarPositionBottom) {
+        if (self.bottomToolbarPosition == TOCropViewControllerToolbarPositionBottom) {
             frame.origin.y = CGRectGetHeight(self.view.bounds) - (frame.size.height + insets.bottom);
         } else {
             frame.origin.y = insets.top;
@@ -322,10 +322,10 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
         frame.size.width = CGRectGetWidth(bounds);
 
         // Set Y and adjust for height
-        if (self.toolbarPosition == TOCropViewControllerToolbarPositionBottom) {
+        if (self.bottomToolbarPosition == TOCropViewControllerToolbarPositionBottom) {
             frame.origin.y += (insets.top + kTOCropViewControllerToolbarHeight);
             frame.size.height -= (insets.top + insets.bottom + (2 * kTOCropViewControllerToolbarHeight));
-        } else if (self.toolbarPosition == TOCropViewControllerToolbarPositionTop) {
+        } else if (self.bottomToolbarPosition == TOCropViewControllerToolbarPositionTop) {
 			frame.origin.y = kTOCropViewControllerToolbarHeight + insets.top;
             frame.size.height -= frame.origin.y;
         }
@@ -372,7 +372,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     // If there is no title text, inset the top of the content as high as possible
     if (!self.titleLabel.text.length) {
         if (self.verticalLayout) {
-          if (self.toolbarPosition == TOCropViewControllerToolbarPositionTop) {
+          if (self.bottomToolbarPosition == TOCropViewControllerToolbarPositionTop) {
             self.cropView.cropRegionInsets = UIEdgeInsetsMake(0.0f, 0.0f, insets.bottom, 0.0f);
           }
           else { // Add padding to the top otherwise
@@ -409,7 +409,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
         }
         else {
             // Add padding on top if in vertical and tool bar is at the top
-            if (self.toolbarPosition == TOCropViewControllerToolbarPositionTop) {
+            if (self.bottomToolbarPosition == TOCropViewControllerToolbarPositionTop) {
                 insets.top = self.view.safeAreaInsets.top;
             }
             else { // Add padding to the bottom otherwise
@@ -418,15 +418,15 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
         }
     }
     else { // iOS <= 10
-        if (!self.statusBarHidden && self.toolbarPosition == TOCropViewControllerToolbarPositionTop) {
+        if (!self.statusBarHidden && self.bottomToolbarPosition == TOCropViewControllerToolbarPositionTop) {
             insets.top = self.statusBarHeight;
         }
     }
 
     // Update the toolbar with these properties
-    self.toolbar.backgroundViewOutsets = insets;
-    self.toolbar.statusBarHeightInset = self.statusBarHeight;
-    [self.toolbar setNeedsLayout];
+    self.bottomToolbar.backgroundViewOutsets = insets;
+    self.bottomToolbar.statusBarHeightInset = self.statusBarHeight;
+    [self.bottomToolbar setNeedsLayout];
 }
 
 - (void)viewSafeAreaInsetsDidChange
@@ -455,9 +455,9 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     }
 
     [UIView performWithoutAnimation:^{
-        self.toolbar.frame = [self frameForToolbarWithVerticalLayout:self.verticalLayout];
+        self.bottomToolbar.frame = [self frameForToolbarWithVerticalLayout:self.verticalLayout];
         [self adjustToolbarInsets];
-        [self.toolbar setNeedsLayout];
+        [self.bottomToolbar setNeedsLayout];
     }];
 }
 
@@ -465,8 +465,8 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 
 - (void)_willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    self.toolbarSnapshotView = [self.toolbar snapshotViewAfterScreenUpdates:NO];
-    self.toolbarSnapshotView.frame = self.toolbar.frame;
+    self.toolbarSnapshotView = [self.bottomToolbar snapshotViewAfterScreenUpdates:NO];
+    self.toolbarSnapshotView.frame = self.bottomToolbar.frame;
     
     if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
         self.toolbarSnapshotView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
@@ -484,10 +484,10 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     else {
         frame.origin.y = self.view.bounds.size.height;
     }
-    self.toolbar.frame = frame;
+    self.bottomToolbar.frame = frame;
 
-    [self.toolbar layoutIfNeeded];
-    self.toolbar.alpha = 0.0f;
+    [self.bottomToolbar layoutIfNeeded];
+    self.bottomToolbar.alpha = 0.0f;
     
     [self.cropView prepareforRotation];
     self.cropView.frame = [self frameForCropViewWithVerticalLayout:!UIInterfaceOrientationIsPortrait(toInterfaceOrientation)];
@@ -498,9 +498,9 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 - (void)_willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     //Remove all animations in the toolbar
-    self.toolbar.frame = [self frameForToolbarWithVerticalLayout:!UIInterfaceOrientationIsLandscape(toInterfaceOrientation)];
-    [self.toolbar.layer removeAllAnimations];
-    for (CALayer *sublayer in self.toolbar.layer.sublayers) {
+    self.bottomToolbar.frame = [self frameForToolbarWithVerticalLayout:!UIInterfaceOrientationIsLandscape(toInterfaceOrientation)];
+    [self.bottomToolbar.layer removeAllAnimations];
+    for (CALayer *sublayer in self.bottomToolbar.layer.sublayers) {
         [sublayer removeAllAnimations];
     }
 
@@ -512,12 +512,12 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
                      animations:
     ^{
         self.cropView.frame = [self frameForCropViewWithVerticalLayout:!UIInterfaceOrientationIsLandscape(toInterfaceOrientation)];
-        self.toolbar.frame = [self frameForToolbarWithVerticalLayout:UIInterfaceOrientationIsPortrait(toInterfaceOrientation)];
+        self.bottomToolbar.frame = [self frameForToolbarWithVerticalLayout:UIInterfaceOrientationIsPortrait(toInterfaceOrientation)];
         [self.cropView performRelayoutForRotation];
     } completion:nil];
 
     self.toolbarSnapshotView.alpha = 0.0f;
-    self.toolbar.alpha = 1.0f;
+    self.bottomToolbar.alpha = 1.0f;
 }
 
 - (void)_didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -628,7 +628,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 
     alertController.modalPresentationStyle = UIModalPresentationPopover;
     UIPopoverPresentationController *presentationController = [alertController popoverPresentationController];
-    presentationController.sourceView = self.toolbar;
+    presentationController.sourceView = self.bottomToolbar;
 //    presentationController.sourceRect = self.toolbar.clampButtonFrame;
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -700,12 +700,12 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 #pragma mark - Crop View Delegates -
 - (void)cropViewDidBecomeResettable:(TOCropView *)cropView
 {
-    self.toolbar.resetButtonEnabled = YES;
+    self.bottomToolbar.resetButtonEnabled = YES;
 }
 
 - (void)cropViewDidBecomeNonResettable:(TOCropView *)cropView
 {
-    self.toolbar.resetButtonEnabled = NO;
+    self.bottomToolbar.resetButtonEnabled = NO;
 }
 
 #pragma mark - Presentation Handling -
@@ -860,7 +860,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
                                                                              message:nil
                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
-    alertController.popoverPresentationController.sourceView = self.toolbar.visibleCancelButton;
+    alertController.popoverPresentationController.sourceView = self.bottomToolbar.visibleCancelButton;
 
     NSString *yesButtonTitle = NSLocalizedStringFromTableInBundle(@"Delete Changes", @"TOCropViewControllerLocalizable", resourceBundle, nil);
     NSString *noButtonTitle = NSLocalizedStringFromTableInBundle(@"Cancel", @"TOCropViewControllerLocalizable", resourceBundle, nil);
@@ -923,8 +923,8 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
         activityController.excludedActivityTypes = self.excludedActivityTypes;
 
         activityController.modalPresentationStyle = UIModalPresentationPopover;
-        activityController.popoverPresentationController.sourceView = self.toolbar;
-        activityController.popoverPresentationController.sourceRect = self.toolbar.doneButtonFrame;
+        activityController.popoverPresentationController.sourceView = self.bottomToolbar;
+        activityController.popoverPresentationController.sourceRect = self.bottomToolbar.doneButtonFrame;
         [self presentViewController:activityController animated:YES completion:nil];
 
         __weak typeof(activityController) blockController = activityController;
@@ -1050,24 +1050,24 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 
 - (void)setDoneButtonTitle:(NSString *)title
 {
-    self.toolbar.doneTextButtonTitle = title;
+    self.bottomToolbar.doneTextButtonTitle = title;
 }
 
 - (void)setCancelButtonTitle:(NSString *)title
 {
-    self.toolbar.cancelTextButtonTitle = title;
+    self.bottomToolbar.cancelTextButtonTitle = title;
 }
 
 - (void)setShowOnlyIcons:(BOOL)showOnlyIcons {
-    self.toolbar.showOnlyIcons = showOnlyIcons;
+    self.bottomToolbar.showOnlyIcons = showOnlyIcons;
 }
   
 - (void)setDoneButtonColor:(UIColor *)color {
-    self.toolbar.doneButtonColor = color;
+    self.bottomToolbar.doneButtonColor = color;
 }
 
 - (void)setCancelButtonColor:(UIColor *)color {
-    self.toolbar.cancelButtonColor = color;
+    self.bottomToolbar.cancelButtonColor = color;
 }
 
 - (TOCropView *)cropView
@@ -1092,13 +1092,13 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     return _topToolbar;
 }
 
-- (TOCropBottomToolbar *)toolbar
+- (TOCropBottomToolbar *)bottomToolbar
 {
-    if (!_toolbar) {
-        _toolbar = [[TOCropBottomToolbar alloc] initWithFrame:CGRectZero];
-        [self.view addSubview:_toolbar];
+    if (!_bottomToolbar) {
+      _bottomToolbar = [[TOCropBottomToolbar alloc] initWithFrame:CGRectZero];
+        [self.view addSubview:_bottomToolbar];
     }
-    return _toolbar;
+    return _bottomToolbar;
 }
 
 - (UILabel *)titleLabel
@@ -1148,7 +1148,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 
 - (void)setResetButtonHidden:(BOOL)resetButtonHidden
 {
-    self.toolbar.resetButtonHidden = resetButtonHidden;
+    self.bottomToolbar.resetButtonHidden = resetButtonHidden;
 }
 
 - (BOOL)rotateButtonsHidden
@@ -1181,22 +1181,22 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 
 - (void)setDoneButtonHidden:(BOOL)doneButtonHidden
 {
-    self.toolbar.doneButtonHidden = doneButtonHidden;
+    self.bottomToolbar.doneButtonHidden = doneButtonHidden;
 }
 
 - (BOOL)doneButtonHidden
 {
-    return self.toolbar.doneButtonHidden;
+    return self.bottomToolbar.doneButtonHidden;
 }
 
 - (void)setCancelButtonHidden:(BOOL)cancelButtonHidden
 {
-    self.toolbar.cancelButtonHidden = cancelButtonHidden;
+    self.bottomToolbar.cancelButtonHidden = cancelButtonHidden;
 }
 
 - (BOOL)cancelButtonHidden
 {
-    return self.toolbar.cancelButtonHidden;
+    return self.bottomToolbar.cancelButtonHidden;
 }
 
 - (void)setResetAspectRatioEnabled:(BOOL)resetAspectRatioEnabled

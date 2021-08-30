@@ -140,7 +140,7 @@
 /**
  The toolbar view managed by this view controller.
  */
-@property (nonnull, nonatomic, strong, readonly) TOCropBottomToolbar *toolbar;
+@property (nonnull, nonatomic, strong, readonly) TOCropBottomToolbar *bottomToolbar;
 
 /**
  The cropping style of this particular crop view controller
@@ -244,7 +244,7 @@
 /**
  The position of the Toolbar the default value is `TOCropViewControllerToolbarPositionBottom`.
  */
-@property (nonatomic, assign) TOCropViewControllerToolbarPosition toolbarPosition;
+@property (nonatomic, assign) TOCropViewControllerToolbarPosition bottomToolbarPosition;
 
 /**
  When disabled, an additional rotation button that rotates the canvas in 
